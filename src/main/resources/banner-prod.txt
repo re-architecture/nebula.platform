@@ -1,0 +1,8 @@
+${AnsiColor.}  _   _          _               _                   ____                       _
+${AnsiColor.BLUE} | \ | |   ___  | |__    _   _  | |   __ _          |  _ \   _ __    ___     __| |
+${AnsiColor.BLUE} |  \| |  / _ \ | '_ \  | | | | | |  / _` |  _____  | |_) | | '__|  / _ \   / _` |
+${AnsiColor.BLUE} | |\  | |  __/ | |_) | | |_| | | | | (_| | |_____| |  __/  | |    | (_) | | (_| |
+${AnsiColor.BLUE} |_| \_|  \___| |_.__/   \__,_| |_|  \__,_|         |_|     |_|     \___/   \__,_|
+
+${AnsiColor.BRIGHT_CYAN}:: Nebula Platform :: Running Spring Boot ${spring-boot.version} ::
+:: https://github.com/re-architecture/nebula.platform ::${AnsiColor.DEFAULT}

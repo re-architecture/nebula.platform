@@ -1,0 +1,5 @@
+# BANNER
+# http://patorjk.com/software/taag/#p=display&h=0&v=0&f=Standard&t=Nebula-Prod
+spring:
+  banner:
+    location: classpath:banner-prod.txt
