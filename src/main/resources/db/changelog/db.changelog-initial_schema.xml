@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  
+  	<property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql"/>
+	<property name="autoIncrement" value="true"/>
+    
+	<changeSet id="initial-schema" author="">
+	
+       <createTable tableName="customer">
+            <column name="customer_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="territory" type="varchar(50)" />
+       </createTable>
+        
+        <createTable tableName="product">
+            <column name="product_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(500)" />
+            <column name="list_price" type="decimal(18,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+         <createTable tableName="warehouse">
+            <column name="warehouse_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+      	</createTable>
+        
+         <createTable tableName="product_order">
+            <column name="product_order_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="customer_id" type="int">
+           		<constraints foreignKeyName="fk_productOrder_customer" references="customer(customer_id)" nullable="false"/>
+      		</column>
+            
+            <column name="order_date" type="date">
+                <constraints nullable="false"/> 
+            </column>
+            <!-- order_status 1 = 处理中 2 = 已批准 3 = 预定 4 = 已拒绝 5 = 已发货 6 = 已取消 -->
+            <column name="order_status" type="int" defaultValue="0">
+                <constraints nullable="false" />
+            </column>
+            
+        </createTable>
+        
+         <createTable tableName="product_order_item">
+            <column name="product_order_item_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="product_order_id" type="int">
+           		<constraints foreignKeyName="fk_productOrderItem_productOrder" references="product_order(product_order_id)" nullable="false"/>
+      		</column>
+      		 <column name="product_id" type="int">
+           		<constraints foreignKeyName="fk_productOrderItem_product" references="product(product_id)" nullable="false"/>
+      		</column>
+             
+           <column name="unit_price" type="decimal(18,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+         </createTable>
+        
+         <createTable tableName="inventory">
+            <column name="product_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="fk_inventory_product" references="product(product_id)" nullable="false"/>
+            </column>
+            <column name="warehouse_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="fk_inventory_warehouse" references="warehouse(warehouse_id)" nullable="false"/>
+            </column>
+            <column name="quantity_on_hand" type="int">
+                <constraints nullable="false"/>
+            </column>
+         </createTable>
+        <!-- 
+        <createTable tableName="user">
+            <column name="user_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="login_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(50)">
+            	<constraints nullable="false"/>
+            </column>
+            <column name="activated" type="boolean" valueBoolean="false">
+                <constraints nullable="false" />
+            </column>
+             <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+            
+       </createTable>
+       
+        <createTable tableName="role">
+            <column name="role_id" type="int" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+       </createTable>
+       
+        <createTable tableName="user_role">
+            <column name="user_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="fk_userRole_user" references="user(user_id)" nullable="false"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints primaryKey="true" foreignKeyName="fk_userRole_role" references="role(role_id)" nullable="false"/>
+            </column>
+       </createTable>
+        --> 
+    </changeSet>
+    
+</databaseChangeLog>

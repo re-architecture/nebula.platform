@@ -3,4 +3,9 @@ spring:
     # The commented value for `active` can be replaced with valid Spring profiles to load.
     # Otherwise, it will be filled in by gradle when building the WAR file
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
-    active: prod #spring.profiles.active#
+    active: dev #spring.profiles.active#
+
+  # LIQUIBASE
+  liquibase:
+    # Change log configuration path.
+    change-log: classpath:/db/changelog/db.changelog-master.xml

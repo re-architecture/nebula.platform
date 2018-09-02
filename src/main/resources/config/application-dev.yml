@@ -3,3 +3,12 @@
 spring:
   banner:
     location: classpath:banner-dev.txt
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      enabled: true
+      # Path at which the console is available.http://localhost:8080/h2-console
+      path: /h2-console

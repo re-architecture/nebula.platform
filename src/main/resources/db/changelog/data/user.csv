@@ -1,0 +1,4 @@
+user_id;login_name;user_name;password;activated;created_by;last_modified_by
+1;admin;admin;123;true;system;system
+2;user;user;456;true;system;system
+3;mike;mike;789;true;system;system

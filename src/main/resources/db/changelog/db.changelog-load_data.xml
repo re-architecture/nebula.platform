@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="load_data" author="">
+		<loadData file="db/changelog/data/customer.csv"
+                  separator=";"
+                  tableName="customer"/>
+                  
+        <loadData file="db/changelog/data/product.csv"
+                  separator=";"
+                  tableName="product"/>
+                  
+        <loadData file="db/changelog/data/warehouse.csv"
+                  separator=";"
+                  tableName="warehouse"/>   
+                  
+        <loadData file="db/changelog/data/product_order.csv"
+                  separator=";"
+                  tableName="product_order"/>
+                  
+        <loadData file="db/changelog/data/product_order_item.csv"
+                  separator=";"
+                  tableName="product_order_item"/>
+                  
+        <loadData file="db/changelog/data/inventory.csv"
+                  separator=";"
+                  tableName="inventory"/> 
+        <!--     
+        <loadData encoding="UTF-8"
+                  file="db/changelog/data/user.csv"
+                  separator=";"
+                  tableName="user"/>
+       
+       <loadData encoding="UTF-8"
+                  file="db/changelog/data/role.csv"
+                  separator=";"
+                  tableName="role"/>
+                  
+       <loadData encoding="UTF-8"
+                  file="db/changelog/data/user_role.csv"
+                  separator=";"
+                  tableName="user_role"/>   
+        -->                                         
+	</changeSet>
+                  
+</databaseChangeLog>
