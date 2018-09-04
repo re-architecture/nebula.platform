@@ -24,3 +24,8 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### nebula platform ###
+# The configuration file contains the settings of the application
+# and is automatically created when the H2 Console is first started.
+/src/main/resources/.h2.server.properties

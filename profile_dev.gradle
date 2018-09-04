@@ -1,0 +1,21 @@
+dependencies {
+    runtime('com.h2database:h2')
+}
+
+def profiles = 'dev'
+
+bootRun {
+   args = []
+}
+
+processResources {
+    filesMatching('**/application.yml') {
+        //filter {
+        //    it.replace('#project.version#', version)
+        //}
+        filter {
+            it.replace('#spring.profiles.active#', profiles)
+        }
+    }
+}
+

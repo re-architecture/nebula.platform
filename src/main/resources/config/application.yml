@@ -1,11 +1,83 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overridden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+#
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties
+# ===================================================================
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: ["configprops", "env", "health", "info", "threaddump"]
+  endpoint:
+    health:
+      show-details: when_authorized
+  info:
+    git:
+      mode: full
+  health:
+    mail:
+      enabled: false # When using the MailService, configure an SMTP server and set this to true
+  metrics:
+    enabled: false # http://micrometer.io/ is disabled by default, as we use http://metrics.dropwizard.io/ instead
+
 spring:
+  output:
+    ansi:
+      enabled: ALWAYS
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.
     # Otherwise, it will be filled in by gradle when building the WAR file
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
-    active: dev #spring.profiles.active#
-
+    # dev or prod
+    active: #spring.profiles.active#
+  messages:
+    basename: i18n/messages
   # LIQUIBASE
   liquibase:
     # Change log configuration path.
     change-log: classpath:/db/changelog/db.changelog-master.xml
+
+  jpa:
+    open-in-view: false
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  async:
+    core-pool-size: 2
+    max-pool-size: 50
+    queue-capacity: 10000
+    # By default CORS is disabled. Uncomment to enable.
+    #cors:
+    #allowed-origins: "*"
+    #allowed-methods: "*"
+    #allowed-headers: "*"
+    #exposed-headers: "Authorization,Link,X-Total-Count"
+    #allow-credentials: true
+    #max-age: 1800
+  mail:
+    from: jhipsterSampleApplication@localhost
+  swagger:
+    default-include-pattern: /api/.*
+    title: jhipsterSampleApplication API
+    description: jhipsterSampleApplication API documentation
+    version: 0.0.1
+    terms-of-service-url:
+    contact-name:
+    contact-url:
+    contact-email:
+    license:
+    license-url:

@@ -1,0 +1,18 @@
+dependencies {
+
+}
+
+def profiles = 'prod'
+
+bootRun {
+    args = []
+}
+
+processResources {
+    filesMatching('**/application.yml') {
+        filter {
+            it.replace('#spring.profiles.active#', profiles)
+        }
+    }
+}
+
