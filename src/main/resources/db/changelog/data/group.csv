@@ -1,0 +1,6 @@
+id;name;description;is_system
+1;group1;;true
+2;group2;;true
+3;group3;;true
+4;group4;;true
+5;group5;;false

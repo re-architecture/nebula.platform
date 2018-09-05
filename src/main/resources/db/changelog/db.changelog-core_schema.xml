@@ -87,7 +87,6 @@
                                  referencedTableName="${prefix}user"/>
 
 
-
         <createTable tableName="${prefix}persistent_audit_event">
             <column name="event_id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
