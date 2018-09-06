@@ -13,6 +13,16 @@ buildscript {
     }
 }
 
+plugins {
+    //暂时未理解
+    // https://plugins.gradle.org/plugin/net.ltgt.apt
+    //id "net.ltgt.apt" version "0.18"
+    // You can integrate with your IDEs.
+    // See more details: https://github.com/tbroyer/gradle-apt-plugin#usage-with-ides
+    //id "net.ltgt.apt-eclipse" version "0.18"
+    //id "net.ltgt.apt-idea" version "0.18"
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -73,6 +83,11 @@ dependencies {
     compile('org.hibernate:hibernate-envers')
     compile('org.apache.commons:commons-lang3')
 
+    compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+    // if you are using mapstruct in test code
+    //testAnnotationProcessor 'org.mapstruct:mapstruct-processor:${mapstruct_version}'
+    //annotationProcessor "org.hibernate:hibernate-jpamodelgen"
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

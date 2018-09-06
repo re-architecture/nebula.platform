@@ -1,0 +1,62 @@
+package nebula.platform.service.impl;
+
+import nebula.platform.domain.Group;
+import nebula.platform.repository.GroupRepository;
+import nebula.platform.service.GroupService;
+import nebula.platform.service.dto.GroupDTO;
+import nebula.platform.service.mapper.GroupMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+@Transactional
+public class GroupServiceImpl implements GroupService {
+
+    private final Logger log = LoggerFactory.getLogger(GroupServiceImpl.class);
+
+    private final GroupRepository groupRepository;
+    private final GroupMapper groupMapper;
+
+    public GroupServiceImpl(GroupRepository groupRepository, GroupMapper groupMapper) {
+        this.groupRepository = groupRepository;
+        this.groupMapper = groupMapper;
+    }
+
+    @Override
+    public GroupDTO save(GroupDTO groupDTO) {
+        log.debug("Request to save Group : {}", groupDTO);
+        Group group = groupMapper.toEntity(groupDTO);
+        group = groupRepository.save(group);
+        return groupMapper.toDto(group);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GroupDTO> findAll() {
+        log.debug("Request to get all Departments");
+        return groupRepository.findAll().stream()
+                .map(groupMapper::toDto)
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<GroupDTO> findOne(Long id) {
+        log.debug("Request to get Department : {}", id);
+        return groupRepository.findById(id)
+                .map(groupMapper::toDto);
+    }
+
+    @Override
+    public void delete(Long id) {
+        log.debug("Request to delete Department : {}", id);
+        groupRepository.deleteById(id);
+    }
+}
