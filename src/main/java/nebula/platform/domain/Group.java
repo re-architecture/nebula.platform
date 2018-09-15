@@ -27,6 +27,9 @@ public class Group implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "is_system")
+    private Boolean isSystem;
+
     public Long getId() {
         return id;
     }
@@ -39,6 +42,10 @@ public class Group implements Serializable {
         return description;
     }
 
+    public Boolean getIsSystem() {
+        return isSystem;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -49,6 +56,10 @@ public class Group implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setIsSystem(Boolean isSystem) {
+        isSystem = isSystem;
     }
 
     @Override
@@ -80,6 +91,7 @@ public class Group implements Serializable {
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
+                ", is_system='" + getIsSystem()+ '\'' +
                 '}';
     }
 }

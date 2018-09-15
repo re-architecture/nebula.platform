@@ -1,8 +1,9 @@
 package nebula.platform.service;
 
 import nebula.platform.service.dto.GroupDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,5 +16,10 @@ public interface GroupService {
     Optional<GroupDTO> findOne(Long id);
 
     void delete(Long id);
+
+    Page<GroupDTO> findAll(Pageable pageable);
+    Page<GroupDTO> findByNameIgnoreCaseContaining(String name,Pageable pageable);
+    Page<GroupDTO> findIsSystem(Boolean isSystem,Pageable pageable);
+    Page<GroupDTO> findByNameIgnoreCaseContainingAndIsSystem(String name, boolean isSystem,Pageable pageable);
 
 }

@@ -7,6 +7,8 @@ import nebula.platform.service.dto.GroupDTO;
 import nebula.platform.service.mapper.GroupMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,4 +61,29 @@ public class GroupServiceImpl implements GroupService {
         log.debug("Request to delete Department : {}", id);
         groupRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<GroupDTO> findAll(Pageable pageable){
+        return groupRepository.findAll(pageable).map(GroupDTO::new);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<GroupDTO> findByNameIgnoreCaseContaining(String name,Pageable pageable){
+        return groupRepository.findByNameIgnoreCaseContaining(name,pageable).map(GroupDTO::new);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<GroupDTO> findIsSystem(Boolean isSystem,Pageable pageable) {
+        return groupRepository.findByIsSystem(isSystem,pageable).map(GroupDTO::new);
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public Page<GroupDTO> findByNameIgnoreCaseContainingAndIsSystem(String name, boolean isSystem,Pageable pageable){
+        return groupRepository.findByNameIgnoreCaseContainingAndIsSystem(name,isSystem,pageable).map(GroupDTO::new);
+    }
+
+
 }

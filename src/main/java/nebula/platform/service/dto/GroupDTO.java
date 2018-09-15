@@ -1,5 +1,7 @@
 package nebula.platform.service.dto;
 
+import nebula.platform.domain.Group;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,6 +13,8 @@ public class GroupDTO implements Serializable {
     private String name;
 
     private String description;
+
+    private  Boolean isSystem;
 
     public void setId(Long id) {
         this.id = id;
@@ -34,6 +38,25 @@ public class GroupDTO implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public Boolean getIsSystem() {
+        return isSystem;
+    }
+
+    public void setIsSystem(Boolean isSystem) {
+        isSystem = isSystem;
+    }
+
+    public GroupDTO() {
+        // Empty constructor needed for Jackson.
+    }
+
+    public GroupDTO(Group group) {
+        this.id = group.getId();
+        this.name = group.getName();
+        this.description = group.getDescription();
+        this.isSystem = group.getIsSystem();
     }
 
     @Override
@@ -63,6 +86,7 @@ public class GroupDTO implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", is_system='" + isSystem + '\'' +
                 '}';
     }
 }
