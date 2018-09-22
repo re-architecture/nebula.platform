@@ -45,7 +45,7 @@ public class GroupDTO implements Serializable {
     }
 
     public void setIsSystem(Boolean isSystem) {
-        isSystem = isSystem;
+        this.isSystem = isSystem;
     }
 
     public GroupDTO() {

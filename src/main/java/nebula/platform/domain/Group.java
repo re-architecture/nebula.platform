@@ -59,7 +59,7 @@ public class Group implements Serializable {
     }
 
     public void setIsSystem(Boolean isSystem) {
-        isSystem = isSystem;
+        this.isSystem = isSystem;
     }
 
     @Override
