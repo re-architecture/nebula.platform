@@ -1,5 +1,78 @@
+# logger level : TRACE, DEBUG, INFO, WARN, ERROR, FATAL
+logging:
+  level:
+    ROOT: DEBUG
+    nebula: DEBUG
+    nebula.platform: DEBUG
+
+server:
+  port: 8080
+
 # BANNER
 # http://patorjk.com/software/taag/#p=display&h=0&v=0&f=Standard&t=Nebula-Prod
 spring:
   banner:
     location: classpath:banner-prod.txt
+  profiles:
+    active: dev
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  messages:
+    cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  h2:
+    console:
+      enabled: true
+      # Path at which the console is available.http://localhost:8080/h2-console
+      path: /h2-console
+
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  http:
+    version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
+  cache: # Cache configuration
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+      max-entries: 100 # Number of objects in each cache entry
+  # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
+  cors:
+    allowed-origins: "*"
+    allowed-methods: "*"
+    allowed-headers: "*"
+    exposed-headers: "Authorization,Link,X-Total-Count"
+    allow-credentials: true
+    max-age: 1800
+  security:
+    authentication:
+      jwt:
+        secret: my-secret-token-to-change-in-production
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    from: jhipsterSampleApplication@localhost
+    base-url: http://127.0.0.1:8080
+  metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+    jmx:
+      enabled: true
+    logs: # Reports Dropwizard metrics in the logs
+      enabled: false
+      report-frequency: 60 # in seconds
+  logging:
+    logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
