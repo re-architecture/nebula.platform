@@ -1,4 +1,22 @@
 # nebula.platform
+
+Install Docker plugin
+https://www.jetbrains.com/help/idea/docker.html
+
+
+File > Settings > plugins Enter Docker install
+
+If you are using Docker for Windows
+https://www.jetbrains.com/help/idea/docker-connection-settings.html
+
+File -> Settings -> Build, Execution, Deployment 
+
+TCP socket. If you are using Docker for Windows, this is the usual connection option. This option will also work for Linux, Docker for macOS and Docker Toolbox.
+
+Engine API URL. Depending on the Docker version and operating system:
+Docker for Windows: tcp://localhost:2375
+IMPORTANT! In the General section of your Docker settings, turn on the Expose daemon on tcp://localhost:2375 without TLS option.
+
 Configuring your IDE
 IntelliJ IDEA
 Delegating build and run actions to Gradle
