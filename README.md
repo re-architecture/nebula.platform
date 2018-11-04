@@ -14,7 +14,7 @@ Spring Boot devtools is configured by JHipster, and will “hot restart” your 
 
 By default IntelliJ IDEA does not automatically compile files when the application is running. To enable the “Compile on save” feature:
 
-Go to File -> Settings -> Build, Execution, Deployment -> Compiler and enable “Make project automatically”
+Go to File -> Settings -> Build, Execution, Deployment -> Compiler and enable “Build project automatically”
 Open the Action window :
 Linux : CTRL+SHIFT+A
 Mac OSX : SHIFT+COMMAND+A
