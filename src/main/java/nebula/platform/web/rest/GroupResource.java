@@ -25,6 +25,7 @@ import nebula.platform.web.rest.util.HeaderUtil;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class GroupResource {
     private final Logger log = LoggerFactory.getLogger(GroupResource.class);
 

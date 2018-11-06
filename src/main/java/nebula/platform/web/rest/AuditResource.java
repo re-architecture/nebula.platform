@@ -21,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/management/audits")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuditResource {
 
     private final AuditEventService auditEventService;
