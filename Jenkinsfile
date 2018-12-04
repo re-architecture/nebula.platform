@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'xxxxxxxxxxxx'
+        git(url: 'https://github.com/re-architecture/nebula.platform', branch: 'master', poll: true)
       }
     }
   }
